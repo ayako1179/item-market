@@ -1,0 +1,104 @@
+.products {
+  max-width: 1512px;
+  /* margin: 0 auto; */
+  padding: 47px 0;
+}
+
+/* タブ */
+.products__tabs {
+  width: 100%;
+  /* padding: 20px 40px; */
+  /* display: flex; */
+  /* gap: 52px; */
+  margin-bottom: 24px;
+  border-bottom: 2px solid #5f5f5f;
+  /* margin-left: 129px; */
+}
+
+.products__tabs-inner {
+  display: flex;
+  gap: 52px;
+  /* margin-top: 47px; */
+  margin-bottom: 8px;
+  margin-left: 129px;
+}
+
+.products__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 155px;
+  height: 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #5f5f5f;
+}
+
+.products__tab--active {
+  color: #ff0000;
+  /* 「おすすめ」が赤文字 */
+}
+
+/* 商品グリッド */
+.products__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 290px);
+  gap: 71px;
+  max-width: 1512px;
+  margin: 77px auto;
+  justify-content: center;
+}
+
+.product-card {
+  width: 290px;
+}
+
+.product-card__image {
+  position: relative;
+  width: 290px;
+  height: 320px;
+  background: #d9d9d9;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card__name {
+  width: 290px;
+  height: 30px;
+  font-family: 'Inter', sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  color: #000;
+  text-align: left;
+  margin-top: 8px;
+}
+
+.product-card a {
+  text-decoration: none;
+}
+
+.product-card a:hover {
+  opacity: 0.7;
+}
+
+/* .product-card__sold {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: red;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+} */

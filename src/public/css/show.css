@@ -1,0 +1,351 @@
+.show {
+  display: flex;
+  /* justify-content: flex-start; */
+  align-items: flex-start;
+  /* gap: 40px; */
+  /* 左右の余白 */
+  max-width: 1380px;
+  margin: 85px 66px;
+  /* padding: 40px 20px; */
+}
+
+.show__image-area {
+  max-width: 690px;
+  /* width: 600px; */
+  /* height: 600px; */
+  /* margin: 36px 45px; */
+  /* Figmaの余白に合わせる */
+}
+
+.item-image {
+  width: 600px;
+  height: 600px;
+  margin: 36px 45px;
+  object-fit: cover;
+  /* 画像を枠にフィットさせて切り抜き */
+  border-radius: 4px;
+  /* 角丸 */
+}
+
+.show__detail {
+  flex: 1;
+  max-width: 690px;
+  padding: 0 60px;
+}
+
+/* .show__detail-title {
+  margin-bottom: 32px;
+} */
+
+.item-name {
+  /* height: 77px; */
+  /* align-items: center; */
+  font-size: 45px;
+  font-weight: bold;
+  /* margin-bottom: 8px; */
+}
+
+.brand {
+  height: 28px;
+  align-items: center;
+  font-size: 20px;
+  /* margin-bottom: 8px; */
+}
+
+.price {
+  font-size: 45px;
+  margin: 28px 0;
+}
+
+.price .tax {
+  font-size: 30px;
+}
+
+.show__actions {
+  display: flex;
+  margin-left: 40px;
+  gap: 60px;
+  /* margin-bottom: 24px; */
+}
+
+.show__actions .action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.show__actions img {
+  width: 40px;
+  height: 40px;
+}
+
+.like-icon {
+  width: 40px;
+  height: 40px;
+  transition: filter 0.3s ease;
+}
+
+/* 未いいね（グレー寄り） */
+.like-icon.not-liked {
+  filter: grayscale(80%) brightness(100%);
+}
+
+/* いいね済み（黄色っぽく見せる） */
+.like-icon.liked {
+  filter: grayscale(0%) brightness(200%) sepia(80%) saturate(500%) hue-rotate(10deg);
+}
+
+.purchase-btn {
+  display: inline-block;
+  background: #FF5555;
+  color: #fff;
+  text-align: center;
+  width: 570px;
+  height: 56px;
+  line-height: 56px;
+  border-radius: 4px;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 22px 0;
+}
+
+.show__description {
+  width: 570px;
+  /* Figmaに合わせる */
+  margin: 37px 0;
+  /* 上下の余白 */
+}
+
+.show__description h2 {
+  font-size: 36px;
+  /* 見出し */
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.show__description p {
+  font-size: 24px;
+  /* 本文 */
+  line-height: 1.5;
+  color: #000;
+  padding: 25px 0;
+}
+
+.show__info {
+  width: 570px;
+  margin: 32px 0;
+}
+
+.show__info h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+/* 共通ラベル */
+.show__info .label {
+  font-size: 24px;
+  font-weight: bold;
+  /* margin-right: 61px; */
+  justify-self: start;
+  /* margin-bottom: 40px; */
+}
+
+/* カテゴリー */
+.show__info-categories {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 35px;
+}
+
+.show__info-categories .label {
+  flex: 0 0 80px;
+  white-space: nowrap;
+  margin-right: 55px;
+}
+
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.category-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  margin-right: 18px;
+  background-color: #d9d9d9;
+  border-radius: 15px;
+  font-size: 20px;
+  color: #000;
+}
+
+/* 状態 */
+.show__info-condition .condition {
+  font-size: 20px;
+}
+
+.show__info-condition .label {
+  margin-right: 61px;
+}
+
+.show__comments {
+  width: 570px;
+  margin-top: 40px;
+}
+
+.comments-title {
+  /* font-family: 'Inter', sans-serif; */
+  font-size: 36px;
+  font-weight: 700;
+  color: #5F5F5F;
+  /* background-color: #F5F5F5; */
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.comment-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* align-items: start; */
+}
+
+.comment-avatar img {
+  width: 70px;
+  height: 70px;
+  /* background-color: #D9D9D9; */
+  border-radius: 50%;
+  /* flex-shrink: 0; */
+  object-fit: cover;
+}
+
+/* .comment-avatar img {
+  object-fit: cover;
+} */
+
+.comment-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* flex-direction: column; */
+  /* gap: 4px;
+  padding: 8px 12px;
+  background-color: #E5E5E5;
+  border-radius: 5px;
+  width: 100%; */
+}
+
+.comment-user {
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 18px;
+}
+
+.comment-text {
+  background-color: #E5E5E5;
+  font-size: 20px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.5;
+  padding: 20px 15px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.show__comment-form {
+  width: 570px;
+  margin: 32px 0;
+}
+
+.show__comment-form h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* .comment-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+} */
+
+.comment-textarea {
+  width: 100%;
+  height: 246px;
+  /* Figmaのサイズ */
+  /* background-color: #d9d9d9; */
+  border: 2px solid #5F5F5F;
+  border-radius: 5px;
+  padding: 12px 16px;
+  font-size: 20px;
+  /* margin-bottom: 48px; */
+  /* resize: none; */
+  /* サイズ変更不可 */
+}
+
+.comment-btn {
+  width: 100%;
+  height: 56px;
+  background-color: #FF5555;
+  /* Figmaの赤 */
+  color: #fff;
+  font-size: 25px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 48px;
+}
+
+.comment-btn:hover {
+  opacity: 0.9;
+}
+
+.error {
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.session-message {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #155724;
+  /* 濃い緑の文字 */
+  padding: 12px 20px;
+  font-size: 24px;
+  margin: 5px auto;
+  width: fit-content;
+  opacity: 1;
+  animation: fadeOut 4s ease forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

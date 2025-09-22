@@ -1,0 +1,123 @@
+/* レスポンシブ対応 */
+.app {
+  max-width: 1512px;
+  min-width: 1400px;
+  margin: 0 auto;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #000000;
+}
+
+/* ヘッダーを3分割配置 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 16px;
+  background: #000000;
+  color: #FFFFFF;
+}
+
+/* 左：ロゴ */
+.header__logo img {
+  height: 36px;
+  width: 370px;
+  object-fit: contain;
+}
+
+/* 中央：検索フォーム */
+.header__search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__search input {
+  width: 500px;
+  height: 50px;
+  padding: 15px 31px;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.header__search input::placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+/* 右：ナビゲーション */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* リンク文字 */
+.header__nav a,
+.header__nav .logout-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  color: #FFFFFF;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* 出品ボタン */
+.header__nav .btn-sell {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 24px;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.error {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  color: red;
+}
+
+/* .alert-success {  
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #155724;
+  padding: 12px 20px;
+  font-size: 24px;
+  margin: 5px auto;
+  width: fit-content;
+  opacity: 1;
+  animation: fadeOut 4s ease forwards;
+} */
+
+/* @keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+} */
