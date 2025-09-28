@@ -29,6 +29,10 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+
+# Stripe APIキー（管理画面から取得）
+STRIPE_KEY=pk_test_51SCE2qBUa3WtvACItw3gJRqItsjNuallxPpqQCLwXHpPfGErS2vCPNtOikz5nkNP8WkonHaLqFDQocKCyYwu2EKA00INYsu6ot
+STRIPE_SECRET=sk_test_xxxxxxxxxxxxxxxxx
 ```
 5. アプリケーションキーの作成
 ``` bash
@@ -55,12 +59,39 @@ php artisan storage:link
 - MySQL8.0.26
 - Docker / docker-compose
 
+## 外部サービス / ライブラリ
+- Laravel Fortify（認証機能）
+- Stripe（決済処理）
+
 ## 機能概要
-- ユーザー認証（Fortifyを利用）
+- ユーザー認証（Laravel Fortifyを利用）
 - 商品一覧・詳細表示
 - 商品出品・購入
 - プロフィール編集
 - いいね機能 / コメント機能
+- 決済機能（Stripeを利用して「カード支払い」「コンビニ払い」の決済画面に接続）
+
+## ユーザー認証について
+本アプリでは **Laravel Fortify** を利用して、認証機能を実装しています。
+
+### 提供される機能
+- ユーザー新規登録
+- ログイン / ログアウト
+
+### 導入パッケージ
+``` bash
+composer require laravel/fortify
+```
+
+## 決済機能について
+本アプリでは **Stripe** を利用し、以下の決済画面に接続できます。
+- クレジットカード決済
+- コンビニ決済
+
+### 導入パッケージ
+``` bash
+composer require stripe/stripe-php
+```
 
 ## ER図
 ![alt](docs/er.png)

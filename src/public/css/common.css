@@ -94,30 +94,27 @@ body {
   color: red;
 }
 
-/* .alert-success {  
-  position: absolute;
-  top: 85px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #155724;
-  padding: 12px 20px;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  flex-direction: column;
+  text-align: center;
+}
+
+.stripe-message {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.container a {
   font-size: 24px;
-  margin: 5px auto;
-  width: fit-content;
-  opacity: 1;
-  animation: fadeOut 4s ease forwards;
-} */
+  color: #007bff;
+  text-decoration: none;
+}
 
-/* @keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-
-  70% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-} */
+.container a:hover {
+  text-decoration: underline;
+}

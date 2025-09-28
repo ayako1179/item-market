@@ -39,7 +39,7 @@
             </form>
 
             <!-- マイページ -->
-            <a href="{{ route('profile.index') }}">マイページ</a>
+            <a href="{{ route('profile.mypage') }}">マイページ</a>
 
             <!-- 出品 -->
             <a href="{{ route('items.sell') }}" class="btn-sell">出品</a>
@@ -56,15 +56,10 @@
     </header>
 
     <div class="content">
-      <!-- @if (session('success'))
-        <div class="session-message">
-          {{ session('success') }}
-        </div>
-      @endif -->
-
       @yield('content')
     </div>
   </div>
+  @yield('scripts')
 </body>
 
 </html>

@@ -14,6 +14,11 @@
   <!-- 左：商品画像 -->
   <div class="show__image-area">
     <img src="{{ $item->image_url }}" alt="{{ $item->name }}" class="item-image">
+    @if($item->is_sold)
+      <div class="show__image-sold">
+        <span class="sold-text">Sold</span>
+      </div>
+    @endif
   </div>
 
   <!-- 右：商品情報 -->
@@ -54,7 +59,11 @@
         </div>
       </div>
 
-      <a href="{{ route('orders.purchase', $item->id) }}" class="purchase-btn">購入手続きへ</a>
+      @if($item->is_sold)
+        <button class="purchase-btn" disabled>Sold Out</button>
+      @else
+        <a href="{{ route('orders.purchase', $item->id) }}" class="purchase-btn">購入手続きへ</a>
+      @endif
     </div>
 
     <!-- 商品説明 -->

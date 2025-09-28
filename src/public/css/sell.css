@@ -1,0 +1,20 @@
+.sell {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 51px 416px;
+}
+
+.sell-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 43px;
+}
+
+.sell__image-area {}
+
+.sell__label {}
+
+.sell__image-input {}
+
+.sell__image-btn {}

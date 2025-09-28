@@ -22,6 +22,8 @@ use App\Http\Controllers\CommentController;
 Route::get('/', [ItemController::class, 'index'])->name('home');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('items.show');
 
+Route::get('/purchase/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+
 // 認証必須
 Route::middleware('auth')->group(function () {
 
@@ -38,12 +40,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/address/{item_id}', [OrderController::class, 'edit'])->name('orders.address');
     Route::post('/purchase/address/{item_id}', [OrderController::class, 'update'])->name('orders.address.update');
 
+    // stripeの処理
+    Route::get('/purchase/success/{item_id}', [OrderController::class, 'success'])->name('orders.success');
+
     // 出品
     Route::get('/sell', [ItemController::class, 'create'])->name('items.sell');
     Route::post('/sell', [ItemController::class, 'store'])->name('items.store');
 
     // プロフィール関連
-    Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.mypage');
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
 });

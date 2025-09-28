@@ -22,8 +22,10 @@
         <a href="{{ route('items.show', $item->id) }}">
           <div class="product-card__image">
             <img src="{{ $item->image_url }}" alt="{{ $item->name}}">
-            @if($item->order)
-              <span class="product-card__sold">Sold</span>
+            @if($item->is_sold)
+              <div class="product-card__sold">
+                <span class="sold-text">Sold</span>
+              </div>
             @endif
           </div>
           <p class="product-card__name">{{ $item->name }}</p>

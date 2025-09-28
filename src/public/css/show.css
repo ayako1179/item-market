@@ -11,6 +11,7 @@
 
 .show__image-area {
   max-width: 690px;
+  position: relative;
   /* width: 600px; */
   /* height: 600px; */
   /* margin: 36px 45px; */
@@ -348,4 +349,28 @@
   100% {
     opacity: 0;
   }
+}
+
+.show__image-sold {
+  position: absolute;
+  top: 36px;
+  left: 45px;
+  width: 0;
+  height: 0;
+  border-top: 200px solid #FF5555;
+  border-right: 200px solid transparent;
+}
+
+.sold-text {
+  position: absolute;
+  top: -110px;
+  left: 35px;
+  display: inline-block;
+  transform: rotate(-45deg);
+  transform-origin: left top;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-family: 'Inter', sans-serif;
 }

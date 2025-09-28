@@ -1,0 +1,333 @@
+/* 購入画面全体 */
+.order {
+  display: flex;
+  /* 左右カラムを横並び */
+  justify-content: space-between;
+  /* 左右に余白を確保 */
+  /* max-width: 1200px; */
+  /* ページ幅の上限 */
+  margin: 0 auto;
+  /* 中央寄せ */
+  padding: 90px 80px;
+  /* 上下40px左右20pxの余白 */
+  box-sizing: border-box;
+  gap: 100px;
+}
+
+/* 左カラム（商品情報・支払方法・住所） */
+.order-left {
+  flex: 2;
+  /* 右カラムより広くする */
+  margin-right: 40px;
+  /* 右カラムとの余白 */
+}
+
+/* 商品全体のボックス */
+.order__item {
+  display: flex;
+  /* 画像とテキストを横並び */
+  align-items: center;
+  /* 縦位置を中央揃え */
+  align-items: flex-start;
+  margin-bottom: 30px;
+  /* 下の要素との余白 */
+  border-bottom: 1px solid #000000;
+}
+
+/* 商品画像 */
+.order__item-image {
+  width: 178px;
+  /* Figmaのスクショに近いサイズ */
+  height: 178px;
+  margin-right: 55px;
+  /* 画像とテキストの間に余白 */
+  /* border: 1px solid #ddd; */
+  /* 薄い枠線 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #f9f9f9; */
+  /* 背景色で画像枠を目立たせる */
+  margin-bottom: 55px;
+}
+
+.order__item-image .item-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  /* 画像の縦横比に維持して枠に収める */
+}
+
+/* 商品名と価格 */
+.order__item-title {
+  flex: 1;
+  /* 画像以外の残りスペースを使う */
+}
+
+.item-name {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.order__item-title .price {
+  font-size: 30px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.order__item-title .tax {
+  font-size: 27px;
+  font-weight: 400;
+  margin-right: 10px;
+  /* ￥ と数字の間隔 */
+}
+
+/* 支払い方法ブロック */
+.order__payment {
+  width: 100%;
+  /* max-width: 326px; */
+  /* Figmaに合わせた幅 */
+  /* margin-bottom: 30px; */
+  /* 次の住所セクションとの余白 */
+  padding-bottom: 50px;
+  /* 内側余白（下線との距離感） */
+  border-bottom: 1px solid #000000;
+  /* 下の区切り線 */
+}
+
+.order__payment p.error {
+  display: block;
+  width: 100%;
+  margin-left: 136px;
+  align-self: flex-start;
+}
+
+/* ラベル */
+.item-title {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  /* margin-bottom: 8px; */
+  /* margin-left: 35px; */
+  margin: 35px 75px;
+}
+
+/* 全体の枠 */
+.custom-select {
+  position: relative;
+  width: 265px;
+  font-family: Inter, sans-serif;
+  margin: 20px 136px;
+}
+
+/* 選択中の表示部分 */
+.custom-select__trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid #5f5f5f;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  color: #5f5f5f;
+}
+
+/* 下矢印アイコン */
+.arrow-icon {
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+
+/* オプションリスト（初期は非表示） */
+.custom-options {
+  position: absolute;
+  /* top: 100%; */
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  border: 1.5px solid #b1b1b1;
+  border-radius: 5px;
+  background-color: #636769;
+  display: none;
+  flex-direction: column;
+  margin-top: 2px;
+  z-index: 10;
+}
+
+/* 各オプション */
+.custom-option {
+  padding: 8px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #eaeaea;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* チェックマーク */
+.check-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  visibility: hidden;
+  /* display: none; */
+  /* 選択された時だけ表示 */
+}
+
+/* 選択時のスタイル */
+.custom-option.selected {
+  background-color: #5599eb;
+  color: #fff;
+}
+
+.custom-option.selected .check-icon {
+  visibility: visible;
+  /* display: inline-block; */
+}
+
+/* 開いた時のリスト表示 */
+.custom-select.open .custom-options {
+  display: flex;
+}
+
+/* 配送先エリア */
+.order__address {
+  /* margin-top: 32px; */
+  /* padding-bottom: 16px; */
+  border-bottom: 1px solid #000000;
+}
+
+.address-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-address {
+  margin-bottom: 60px;
+  /* gap: 30px; */
+}
+
+.item-address p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-left: 136px;
+  margin-top: 8px;
+  /* margin: 4px 5px 20px 176px; */
+  color: #000000;
+}
+
+.item-address span {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  /* margin: 4px 5px 20px 176px; */
+  color: #000000;
+  margin-left: 8px;
+}
+
+.order__address a {
+  font-size: 20px;
+  font-weight: 400;
+  color: #0073cc;
+  margin-right: 35px;
+  margin-top: 40px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.order__address a:hover {
+  text-decoration: underline;
+}
+
+/* 右カラム全体 */
+.order-right {
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 66px;
+  /* 確認ボックスとボタンの間隔 */
+}
+
+/* 確認ボックス全体 */
+.order-confirm {
+  display: grid;
+  grid-template-columns: 220px 220px;
+  grid-template-rows: 115px 115px;
+  width: 440px;
+  height: 230px;
+  /* border: 1px solid #000000; */
+}
+
+/* 各セル */
+.confirm-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000000;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+.confirm-box:nth-child(1),
+.confirm-box:nth-child(3) {
+  border-right: none;
+}
+
+.confirm-box:nth-child(2),
+.confirm-box:nth-child(4) {
+  border-left: none;
+}
+
+.confirm-box:nth-child(1),
+.confirm-box:nth-child(2) {
+  border-bottom: none;
+}
+
+/* タイトル */
+.confirm-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+}
+
+/* 右側の値 */
+.confirm-value {
+  font-size: 24px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.confirm-tax {
+  font-size: 20px;
+  margin-right: 2px;
+  vertical-align: baseline;
+}
+
+/* 購入ボタン */
+.order-action {
+  width: 100%;
+}
+
+.btn-order {
+  width: 100%;
+  height: 60px;
+  background-color: #FF5555;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.btn-order:hover {
+  background-color: #e04a4a;
+}
