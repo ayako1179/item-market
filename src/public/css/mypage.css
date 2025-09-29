@@ -1,23 +1,77 @@
-.products {
+.mypage {
   max-width: 1512px;
-  padding: 47px 0;
+  /* padding: 78px 69px; */
 }
 
-/* タブ */
-.products__tabs {
+.mypage__profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 32px; */
+  max-width: 1017px;
+  height: 150px;
+  margin: 78px 0 77px 299px;
+  /* margin-bottom: 77px;
+  margin-left: 299px; */
+  /* margin: 40px auto; */
+  /* padding: 16px; */
+  /* border: 2px solid #FF5555; */
+  /* border-radius: 8px; */
+  /* background-color: #fff; */
+}
+
+.mypage__profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* margin-left: 230px; */
+}
+
+.mypage__username {
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #000;
+  margin-right: 250px;
+}
+
+.mypage__profile .btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 12px 24px; */
+  width: 310px;
+  height: 59px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #FF5555;
+  border: 2px solid #FF5555;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.mypage__profile .btn a:hover {
+  background-color: #FF5555;
+  color: #fff;
+}
+
+.mypage__tabs {
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 59px;
   border-bottom: 2px solid #5f5f5f;
 }
 
-.products__tabs-inner {
+.mypage__tabs-inner {
   display: flex;
   gap: 52px;
   margin-bottom: 8px;
   margin-left: 129px;
 }
 
-.products__tab {
+.mypage__tab {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,14 +80,13 @@
   font-family: 'Inter', sans-serif;
   font-size: 24px;
   font-weight: 700;
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
   text-decoration: none;
   color: #5f5f5f;
 }
 
-.products__tab--active {
+.mypage__tabs a.active {
   color: #ff0000;
-  /* 「おすすめ」が赤文字 */
 }
 
 /* 商品グリッド */
@@ -108,4 +161,11 @@
   font-weight: bold;
   letter-spacing: 2px;
   font-family: 'Inter', sans-serif;
+}
+
+.product-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #5f5f5f;
 }
