@@ -19,7 +19,6 @@ class OrderController extends Controller
     {
         $item = Item::findOrFail($item_id);
         $user = Auth::user();
-        // $user = Auth::user()->load('profile');
 
         // セッションに保存されていればそれを使う、なければプロフィール
         $address = session('purchase_address', [
@@ -48,14 +47,44 @@ class OrderController extends Controller
 
         // 商品を取得
         $item = Item::findOrFail($item_id);
-
-        // Stripe を初期化
-        Stripe::setApiKey(config('services.stripe.secret'));
-
         $paymentType = $validated['payment_method'];
 
-        // Checkout セッションを作成(支払方法に応じて)
+        // コンビニ払い → DB保存して商品一覧へ
+        if ($paymentType === 'コンビニ払い') {
+            // Stripe に遷移しない
+            Order::create([
+                'user_id' => $user->id,
+                'item_id' => $item_id,
+                'payment_method' => $paymentType,
+                'postal_code' => $address['postal_code'],
+                'address' => $address['address'],
+                'building' => $address['building'],
+            ]);
+
+            $item->is_sold = true;
+            $item->save();
+
+            session()->forget(['purchase_address']);
+            return redirect()->route('home');
+        }       
+
+        // カード支払い → Stripeへ遷移
         if ($paymentType === 'カード支払い') {
+            // Stripe を初期化
+            Stripe::setApiKey(config('services.stripe.secret'));
+
+            // 情報をセッションに一時保存（決済成功後に使用）
+            session([
+                'pending_order' => [
+                    'user_id' => $user->id,
+                    'item_id' => $item_id,
+                    'payment_method' => $paymentType,
+                    'postal_code' => $address['postal_code'],
+                    'address' => $address['address'],
+                    'building' => $address['building'],
+                ],
+            ]);
+
             $checkoutSession = StripeSession::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -69,65 +98,24 @@ class OrderController extends Controller
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => route('orders.success', ['item_id' => $item->id]),
-                'cancel_url' => route('orders.cancel'),
-            ]);
-        } elseif ($paymentType === 'コンビニ払い') {
+                // 成功時は商品一覧へ遷移（success画面なし）
+                'success_url' => route('orders.stripeSuccess', ['item_id' => $item_id]),
+                // キャンセル時は購入画面へ戻る
+                'cancel_url' => route('orders.stripeCancel', ['item_id' => $item_id]),
+            ]);  
 
-            $order = Order::create([
-                'user_id' => $user->id,
-                'item_id' => $item->id,
-                'payment_method' => $validated['payment_method'],
-                'postal_code' => $address['postal_code'],
-                'address' => $address['address'],
-                'building' => $address['building'],
-            ]);
-
-            $item->is_sold = true;
-            $item->save();
-
-            $checkoutSession = StripeSession::create([
-                'payment_method_types' => ['konbini'],
-                'line_items' => [[
-                    'price_data' => [
-                        'currency' => 'jpy',
-                        'product_data' => [
-                            'name' => $item->name,
-                        ],
-                        'unit_amount' => $item->price,
-                    ],
-                    'quantity' => 1,
-                ]],
-                'mode' => 'payment',
-                'success_url' => route('orders.success', ['item_id' => $item->id]),
-                'cancel_url' => route('orders.cancel'),
-            ]);
+            return redirect($checkoutSession->url);
         }
-
-        // 購入時に使う情報をセッションに保存
-        session([
-            'pending_order' => [
-                'item_id' => $item_id,
-                'payment_method' => $validated['payment_method'],
-                'postal_code' => $address['postal_code'],
-                'address' => $address['address'],
-                'building' => $address['building'],
-            ]
-        ]);
-
-        // Stripe の決済ページにリダイレクト
-        return redirect($checkoutSession->url);
     }
 
-    public function success(Request $request, $item_id)
+    // Stripe成功 → DB保存＆Sold反映 → 一覧へ
+    public function stripeSuccess($item_id)
     {
-        $user = Auth::user();
         $pending = session('pending_order');
 
-        if ($pending) {
-            // 注文を保存
-            $order = Order::create([
-                'user_id' => $user->id,
+        if($pending) {
+            Order::create([
+                'user_id' => $pending['user_id'],
                 'item_id' => $pending['item_id'],
                 'payment_method' => $pending['payment_method'],
                 'postal_code' => $pending['postal_code'],
@@ -135,24 +123,21 @@ class OrderController extends Controller
                 'building' => $pending['building'],
             ]);
 
-            // 商品を Sold 状態に
             $item = Item::findOrFail($pending['item_id']);
             $item->is_sold = true;
             $item->save();
 
-            // セッションの住所を削除（次の購入に残さないように）
             session()->forget(['pending_order', 'purchase_address']);
         }
 
-        return view('orders.success');
+        return redirect()->route('home');
     }
 
-    public function cancel()
+    // Stripeキャンセル → DB保存なし、購入画面に戻る
+    public function stripeCancel($item_id)
     {
-        // セッションの注文情報を削除
-        session()->forget('pending_order');
-
-        return view('orders.cancel');
+        session()->forget(['pending_order']);
+        return redirect()->route('orders.purchase', ['item_id' => $item_id]);
     }
 
     // 住所変更画面

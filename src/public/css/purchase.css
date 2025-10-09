@@ -1,15 +1,9 @@
 /* 購入画面全体 */
 .order {
   display: flex;
-  /* 左右カラムを横並び */
   justify-content: space-between;
-  /* 左右に余白を確保 */
-  /* max-width: 1200px; */
-  /* ページ幅の上限 */
   margin: 0 auto;
-  /* 中央寄せ */
   padding: 90px 80px;
-  /* 上下40px左右20pxの余白 */
   box-sizing: border-box;
   gap: 100px;
 }
@@ -17,37 +11,26 @@
 /* 左カラム（商品情報・支払方法・住所） */
 .order-left {
   flex: 2;
-  /* 右カラムより広くする */
   margin-right: 40px;
-  /* 右カラムとの余白 */
 }
 
 /* 商品全体のボックス */
 .order__item {
   display: flex;
-  /* 画像とテキストを横並び */
   align-items: center;
-  /* 縦位置を中央揃え */
   align-items: flex-start;
   margin-bottom: 30px;
-  /* 下の要素との余白 */
   border-bottom: 1px solid #000000;
 }
 
 /* 商品画像 */
 .order__item-image {
   width: 178px;
-  /* Figmaのスクショに近いサイズ */
   height: 178px;
   margin-right: 55px;
-  /* 画像とテキストの間に余白 */
-  /* border: 1px solid #ddd; */
-  /* 薄い枠線 */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: #f9f9f9; */
-  /* 背景色で画像枠を目立たせる */
   margin-bottom: 55px;
 }
 
@@ -55,13 +38,11 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  /* 画像の縦横比に維持して枠に収める */
 }
 
 /* 商品名と価格 */
 .order__item-title {
   flex: 1;
-  /* 画像以外の残りスペースを使う */
 }
 
 .item-name {
@@ -80,20 +61,13 @@
   font-size: 27px;
   font-weight: 400;
   margin-right: 10px;
-  /* ￥ と数字の間隔 */
 }
 
 /* 支払い方法ブロック */
 .order__payment {
   width: 100%;
-  /* max-width: 326px; */
-  /* Figmaに合わせた幅 */
-  /* margin-bottom: 30px; */
-  /* 次の住所セクションとの余白 */
   padding-bottom: 50px;
-  /* 内側余白（下線との距離感） */
   border-bottom: 1px solid #000000;
-  /* 下の区切り線 */
 }
 
 .order__payment p.error {
@@ -108,8 +82,6 @@
   display: block;
   font-size: 20px;
   font-weight: bold;
-  /* margin-bottom: 8px; */
-  /* margin-left: 35px; */
   margin: 35px 75px;
 }
 
@@ -146,7 +118,6 @@
 /* オプションリスト（初期は非表示） */
 .custom-options {
   position: absolute;
-  /* top: 100%; */
   bottom: -100%;
   left: 0;
   width: 100%;
@@ -176,8 +147,6 @@
   height: 14px;
   margin-right: 4px;
   visibility: hidden;
-  /* display: none; */
-  /* 選択された時だけ表示 */
 }
 
 /* 選択時のスタイル */
@@ -188,7 +157,6 @@
 
 .custom-option.selected .check-icon {
   visibility: visible;
-  /* display: inline-block; */
 }
 
 /* 開いた時のリスト表示 */
@@ -198,8 +166,6 @@
 
 /* 配送先エリア */
 .order__address {
-  /* margin-top: 32px; */
-  /* padding-bottom: 16px; */
   border-bottom: 1px solid #000000;
 }
 
@@ -210,7 +176,6 @@
 
 .item-address {
   margin-bottom: 60px;
-  /* gap: 30px; */
 }
 
 .item-address p {
@@ -219,7 +184,6 @@
   line-height: 1.5;
   margin-left: 136px;
   margin-top: 8px;
-  /* margin: 4px 5px 20px 176px; */
   color: #000000;
 }
 
@@ -227,7 +191,6 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 1.5;
-  /* margin: 4px 5px 20px 176px; */
   color: #000000;
   margin-left: 8px;
 }
@@ -252,7 +215,6 @@
   display: flex;
   flex-direction: column;
   gap: 66px;
-  /* 確認ボックスとボタンの間隔 */
 }
 
 /* 確認ボックス全体 */
@@ -262,7 +224,6 @@
   grid-template-rows: 115px 115px;
   width: 440px;
   height: 230px;
-  /* border: 1px solid #000000; */
 }
 
 /* 各セル */

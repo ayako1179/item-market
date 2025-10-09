@@ -40,8 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/address/{item_id}', [OrderController::class, 'edit'])->name('orders.address');
     Route::post('/purchase/address/{item_id}', [OrderController::class, 'update'])->name('orders.address.update');
 
-    // stripeの処理
-    Route::get('/purchase/success/{item_id}', [OrderController::class, 'success'])->name('orders.success');
+    // stripe専用ルート（画面なし）
+    Route::get('/purchase/stripe/success/{item_id}', [OrderController::class, 'stripeSuccess'])->name('orders.stripeSuccess');
+    Route::get('/purchase/stripe/cancel/{item_id}', [OrderController::class, 'stripeCancel'])->name('orders.stripeCancel');
 
     // 出品
     Route::get('/sell', [ItemController::class, 'create'])->name('items.sell');
@@ -52,7 +53,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });

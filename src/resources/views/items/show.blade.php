@@ -13,7 +13,7 @@
   @endif
   <!-- 左：商品画像 -->
   <div class="show__image-area">
-    <img src="{{ $item->image_url }}" alt="{{ $item->name }}" class="item-image">
+    <img src="{{ asset('storage/' .$item->image_path) }}" alt="{{ $item->name }}" class="item-image">
     @if($item->is_sold)
       <div class="show__image-sold">
         <span class="sold-text">Sold</span>

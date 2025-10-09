@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ExhibitionRequest;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Condition;
 
 class ItemController extends Controller
 {
@@ -69,6 +72,34 @@ class ItemController extends Controller
 
     public function create()
     {
-        return view('items.sell');
+        // カテゴリーと状態を取得してビューに渡す
+        $categories = Category::all();
+        $conditions = Condition::all();
+
+        return view('items.sell', compact('categories', 'conditions'));
+    }
+
+    public function store(ExhibitionRequest $request)
+    {
+        // ログイン中のユーザーIDを取得
+        $user_id = Auth::id();
+
+        // 画像保存
+        $imagePath = $request->file('image')->store('products', 'public');
+
+        // データを保存
+        $item = new Item();
+        $item->user_id = $user_id;
+        $item->name = $request->name;
+        $item->price = $request->price;
+        $item->description = $request->description;
+        $item->image_path = $imagePath;
+        $item->condition_id = $request->condition_id;
+        $item->save();
+
+        // 中間テーブルにカテゴリーを保存
+        $item->categories()->sync($request->categories);
+
+        return redirect()->route('profile.mypage');
     }
 }

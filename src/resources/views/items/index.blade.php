@@ -21,7 +21,7 @@
       <div class="product-card">
         <a href="{{ route('items.show', $item->id) }}">
           <div class="product-card__image">
-            <img src="{{ $item->image_url }}" alt="{{ $item->name}}">
+            <img src="{{ asset('storage/' .$item->image_path) }}" alt="{{ $item->name}}">
             @if($item->is_sold)
               <div class="product-card__sold">
                 <span class="sold-text">Sold</span>

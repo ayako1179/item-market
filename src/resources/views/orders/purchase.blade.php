@@ -12,7 +12,7 @@
       <div class="order__item">
         <!-- 商品画像 -->
         <div class="order__item-image">
-          <img src="{{ $item->image_url }}" alt="{{ $item->name }}" class="item-image">
+          <img src="{{ asset('storage/' .$item->image_path) }}" alt="{{ $item->name }}" class="item-image">
         </div>
         <!-- 商品名・価格 -->
         <div class="order__item-title">
