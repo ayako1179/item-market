@@ -28,6 +28,11 @@ class FortifyServiceProvider extends ServiceProvider
     {
         // Fortify が使う　LoginRequest を自作のものに差し替える
         $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\RegisterResponse::class,
+            \App\Http\Response\RegisterResponse::class
+        );
     }
 
     /**

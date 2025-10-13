@@ -86,7 +86,6 @@ composer require laravel/fortify
 ## 決済機能について
 本アプリでは **Stripe** を利用し、以下の決済画面に接続できます。
 - クレジットカード決済
-- コンビニ決済
 
 ### 導入パッケージ
 ``` bash
@@ -99,3 +98,20 @@ composer require stripe/stripe-php
 ## URL
 - 開発環境：http://localhost:8081/
 - phpMyAdmin:：http://localhost:8080/
+
+## テスト概要（Feature / Unit Tests）
+本アプリケーションでは、主要機能に対して Featureテスト / Unitテスト を実装し、Laravel標準のテストフレームワーク（PHPUnit）により動作を自動検証しています。
+
+### 実行方法
+全テストを一括実行：
+``` bash
+php artisan test
+```
+テスト結果をファイルに保存：
+``` bash
+php artisan test > tests/results.txt
+```
+
+### テスト結果（2025年10月時点）
+Tests:  39 passed
+Time:   3.72s
