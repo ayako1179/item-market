@@ -15,9 +15,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/storage/*
-!/storage/app/public/profile_images/
-!/storage/app/public/product_images/
-!/storage/app/public/.gitkeep
-/storage/framework/*
-/storage/logs/*
+/src/storage/*
+!/src/storage/app/public/profile_images/
+!/src/storage/app/public/product_images/
+!/src/storage/app/public/.gitkeep
+/src/storage/framework/*
+/src/storage/logs/*
