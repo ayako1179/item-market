@@ -9,24 +9,18 @@
   <h1 class="sell-title">商品の出品</h1>
   <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data" novalidate>
     @csrf
-    <!-- 商品画像アップロード -->
     <div class="sell__image-area">
       <label for="image" class="sell__label">商品画像</label>
       <div class="image-preview" id="imagePreview">
-        <!-- プレビュー画像（最初は非表示） -->
         <img id="previewImage" src="#" alt="プレビュー画像" style="display:none;">
-        <!-- 実際のファイル選択 -->
         <input type="file" name="image" id="image" class="sell__image-input">
-        <!-- 見た目用ボタン -->
         <button type="button" class="sell__image-btn" id="selectImageBtn">画像を選択する</button>
-        <!-- <span class="sell__image-btn">画像を選択する</span> -->
       </div>
       @error('image')
         <p class="error">{{ $message }}</p>
       @enderror
     </div>
 
-    <!-- 商品の詳細 -->
     <div class="sell__detail-area">
       <h2 class="sell__subtitle">商品の詳細</h2>
       <div class="form-group form-group--category">
@@ -45,7 +39,6 @@
         </div>
       </div>
 
-      <!-- 商品の状態 -->
       <div class="sell__condition">
         <label for="condition" class="sell__label">商品の状態</label>
 
@@ -65,7 +58,6 @@
           </div>
         </div>
         
-        <!-- 実際に送信される値 -->
         <input type="hidden" name="condition_id" id="conditionInput" value="{{ old('condition_id') }}">
 
         @error('condition_id')
@@ -74,7 +66,6 @@
       </div>
     </div>
 
-    <!-- 商品名と説明 -->
     <div class="sell__form-area">
       <h2 class="sell__subtitle">商品名と説明</h2>
       <div class="form-group">
@@ -118,20 +109,15 @@
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  /* ==========================
-   * ① 商品画像プレビュー処理
-   * ========================== */
   const input = document.getElementById('image');
   const button = document.getElementById('selectImageBtn');
   const preview = document.getElementById('previewImage');
 
   if (input && button && preview) {
-    // ボタンクリック → ファイル選択
     button.addEventListener('click', function() {
       input.click();
     });
 
-    // ファイル選択時の処理
     input.addEventListener('change', function(event) {
       const file = event.target.files[0];
       if (file) {
@@ -146,9 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* ==========================
-   * ② プルダウン（商品の状態）
-   * ========================== */
   const select = document.getElementById('conditionSelect');
   const trigger = document.getElementById('conditionTrigger');
   const options = document.getElementById('conditionOptions');
@@ -175,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    // フォーム外クリックで閉じる
     document.addEventListener('click', e => {
       if (!select.contains(e.target)) {
         select.classList.remove('open');

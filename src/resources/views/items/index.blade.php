@@ -6,7 +6,6 @@
 
 @section('content')
 <div class="products">
-  <!-- タブ部分 -->
   <div class="products__tabs">
     <div class="products__tabs-inner">
       <a href="{{ route('home', ['tab' => 'recommend', 'keyword' => request('keyword')]) }}" class="products__tab {{ ($tab ?? 'recommend') === 'recommend' ? 'products__tab--active' : '' }}">おすすめ</a>
@@ -15,7 +14,6 @@
     </div>
   </div>
 
-  <!-- 商品一覧 -->
   <div class="products__grid">
     @foreach($items as $item)
       <div class="product-card">

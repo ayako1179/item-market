@@ -17,8 +17,7 @@
       
       @error('email')
         <p class="error">{{ $message }}</p>
-      @enderror
-      
+      @enderror      
     </div>
 
     <div class="auth__group">
@@ -27,8 +26,7 @@
       
       @error('password')
         <p class="error">{{ $message }}</p>
-      @enderror
-      
+      @enderror      
     </div>
 
     <button type="submit" class="btn--auth">ログインする</button>

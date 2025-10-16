@@ -4,25 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Profile;
+use App\Models\User;
 use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
-    // マイページ
     public function index(Request $request)
     {
-        $user = Auth::user();
-
-        // タブ切り替え（デフォルトは出品商品）
+        $user = Auth::user()->load('profile');
         $page = $request->query('page', 'sell');
 
         if ($page === 'sell') {
-            $products = Item::where('user_id', $user->id)->get();
+            $products = Item::where('user_id', $user->id)
+                ->orderByDesc('created_at')
+                ->get();
         } else {
-            $products = Order::where('user_id', $user->id)->with('item')->get();
+            $products = Order::where('user_id', $user->id)
+                ->with(['item' => function ($query) {
+                    $query->orderByDesc('created_at');
+                }])
+                ->whereHas('item')
+                ->get();
         }
 
         return view('profile.mypage', compact('user', 'products', 'page'));
@@ -30,7 +36,7 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        $user = Auth::user();
+        $user = Auth::user()->load('profile');
         $profile = $user->profile ?? new Profile();
 
         return view('profile.edit', compact('user', 'profile'));
@@ -41,29 +47,29 @@ class ProfileController extends Controller
         $user = Auth::user();
         $profile = $user->profile ?? new Profile(['user_id' => $user->id]);
 
-        // プロフィール画像の処理
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('profile_images', 'public');
-            $profile->profile_image = basename($path);
+            $profile->profile_image = $path;
         } elseif (!$profile->profile_image) {
             $defaultPath = 'images/default_profile.png';
             $newFileName = uniqid('default_') . '.png';
-            \Storage::disk('public')->put("profile_images/{$newFileName}", file_get_contents(public_path($defaultPath)));
+            Storage::disk('public')->put(
+                "profile_images/{$newFileName}",
+                file_get_contents(public_path($defaultPath))
+            );
             $profile->profile_image = $newFileName;
         }
 
-        // 他のプロフィール情報を更新
         $profile->postal_code = $request->postal_code;
         $profile->address = $request->address;
         $profile->building = $request->building;
 
-        // ユーザー名は users テーブルに保存
         $user->name = $request->name;
         $user->save();
-
-        // プロフィールを保存
         $profile->save();
 
-        return redirect()->route('profile.edit')->with('success', 'プロフィールを更新しました');
+        Auth::setUser($user->load('profile'));
+
+        return redirect()->route('profile.edit');
     }
 }

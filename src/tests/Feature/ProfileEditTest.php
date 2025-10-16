@@ -29,7 +29,7 @@ class ProfileEditTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response->assertSee('profile_images/test.png');
+        $response->assertSee('storage/test.png');
         $response->assertSee('テストユーザー');
         $response->assertSee('123-4567');
         $response->assertSee('東京都渋谷区神南1-1-1');

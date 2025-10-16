@@ -69,12 +69,10 @@
   transition: filter 0.3s ease;
 }
 
-/* 未いいね（グレー寄り） */
 .like-icon.not-liked {
   filter: grayscale(80%) brightness(100%);
 }
 
-/* いいね済み（黄色っぽく見せる） */
 .like-icon.liked {
   filter: grayscale(0%) brightness(200%) sepia(80%) saturate(500%) hue-rotate(10deg);
 }
@@ -123,14 +121,12 @@
   margin-bottom: 40px;
 }
 
-/* 共通ラベル */
 .show__info .label {
   font-size: 24px;
   font-weight: bold;
   justify-self: start;
 }
 
-/* カテゴリー */
 .show__info-categories {
   display: flex;
   align-items: flex-start;
@@ -160,7 +156,6 @@
   color: #000;
 }
 
-/* 状態 */
 .show__info-condition .condition {
   font-size: 20px;
 }
@@ -267,34 +262,6 @@
 .error {
   margin-top: 4px;
   font-size: 20px;
-}
-
-.session-message {
-  position: absolute;
-  top: 85px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #155724;
-  padding: 12px 20px;
-  font-size: 24px;
-  margin: 5px auto;
-  width: fit-content;
-  opacity: 1;
-  animation: fadeOut 4s ease forwards;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-
-  70% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
 }
 
 .show__image-sold {

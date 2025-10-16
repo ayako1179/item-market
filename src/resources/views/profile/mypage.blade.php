@@ -7,7 +7,7 @@
 @section('content')
 <div class="mypage">
   <div class="mypage__profile">
-    <img src="{{ asset('storage/profile_images/' . $user->profile->profile_image) }}" alt="プロフィール写真" class="mypage__profile-image">
+    <img src="{{ asset('storage/' . $user->profile->profile_image) }}" alt="プロフィール写真" class="mypage__profile-image">
     <h2 class="mypage__username">{{ $user->name }}</h2>
     <div class="btn">
       <a href="{{ route('profile.edit') }}">プロフィールを編集</a>
@@ -26,7 +26,6 @@
     </div>
   </div>
 
-  <!-- 商品カード一覧 -->
   <div class="products__grid">
     @if($page === 'sell')
       @forelse($products as $item)

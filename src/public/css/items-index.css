@@ -3,7 +3,6 @@
   padding: 47px 0;
 }
 
-/* タブ */
 .products__tabs {
   width: 100%;
   margin-bottom: 24px;
@@ -35,7 +34,6 @@
   color: #ff0000;
 }
 
-/* 商品グリッド */
 .products__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 290px);

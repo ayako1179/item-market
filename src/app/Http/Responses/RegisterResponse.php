@@ -14,7 +14,6 @@ class RegisterResponse implements RegisterResponseContract
      */
     public function toResponse($request)
     {
-        // 登録後はプロフィール設定画面へ遷移
         return redirect('/mypage/profile');
     }
 }

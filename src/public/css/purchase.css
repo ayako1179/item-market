@@ -1,4 +1,3 @@
-/* 購入画面全体 */
 .order {
   display: flex;
   justify-content: space-between;
@@ -8,13 +7,11 @@
   gap: 100px;
 }
 
-/* 左カラム（商品情報・支払方法・住所） */
 .order-left {
   flex: 2;
   margin-right: 40px;
 }
 
-/* 商品全体のボックス */
 .order__item {
   display: flex;
   align-items: center;
@@ -23,7 +20,6 @@
   border-bottom: 1px solid #000000;
 }
 
-/* 商品画像 */
 .order__item-image {
   width: 178px;
   height: 178px;
@@ -40,7 +36,6 @@
   object-fit: contain;
 }
 
-/* 商品名と価格 */
 .order__item-title {
   flex: 1;
 }
@@ -63,7 +58,6 @@
   margin-right: 10px;
 }
 
-/* 支払い方法ブロック */
 .order__payment {
   width: 100%;
   padding-bottom: 50px;
@@ -77,7 +71,6 @@
   align-self: flex-start;
 }
 
-/* ラベル */
 .item-title {
   display: block;
   font-size: 20px;
@@ -85,7 +78,6 @@
   margin: 35px 75px;
 }
 
-/* 全体の枠 */
 .custom-select {
   position: relative;
   width: 265px;
@@ -93,7 +85,6 @@
   margin: 20px 136px;
 }
 
-/* 選択中の表示部分 */
 .custom-select__trigger {
   display: flex;
   justify-content: space-between;
@@ -108,14 +99,12 @@
   color: #5f5f5f;
 }
 
-/* 下矢印アイコン */
 .arrow-icon {
   width: 12px;
   height: 12px;
   pointer-events: none;
 }
 
-/* オプションリスト（初期は非表示） */
 .custom-options {
   position: absolute;
   bottom: -100%;
@@ -130,7 +119,6 @@
   z-index: 10;
 }
 
-/* 各オプション */
 .custom-option {
   padding: 8px 8px;
   font-size: 14px;
@@ -141,7 +129,6 @@
   cursor: pointer;
 }
 
-/* チェックマーク */
 .check-icon {
   width: 14px;
   height: 14px;
@@ -149,7 +136,6 @@
   visibility: hidden;
 }
 
-/* 選択時のスタイル */
 .custom-option.selected {
   background-color: #5599eb;
   color: #fff;
@@ -159,12 +145,10 @@
   visibility: visible;
 }
 
-/* 開いた時のリスト表示 */
 .custom-select.open .custom-options {
   display: flex;
 }
 
-/* 配送先エリア */
 .order__address {
   border-bottom: 1px solid #000000;
 }
@@ -209,7 +193,6 @@
   text-decoration: underline;
 }
 
-/* 右カラム全体 */
 .order-right {
   width: 440px;
   display: flex;
@@ -217,7 +200,6 @@
   gap: 66px;
 }
 
-/* 確認ボックス全体 */
 .order-confirm {
   display: grid;
   grid-template-columns: 220px 220px;
@@ -226,7 +208,6 @@
   height: 230px;
 }
 
-/* 各セル */
 .confirm-box {
   display: flex;
   justify-content: center;
@@ -250,14 +231,12 @@
   border-bottom: none;
 }
 
-/* タイトル */
 .confirm-title {
   font-size: 20px;
   font-weight: 400;
   color: #000000;
 }
 
-/* 右側の値 */
 .confirm-value {
   font-size: 24px;
   font-weight: 400;
@@ -270,7 +249,6 @@
   vertical-align: baseline;
 }
 
-/* 購入ボタン */
 .order-action {
   width: 100%;
 }

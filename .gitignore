@@ -15,12 +15,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-
-# storage 全体を無視
 /storage/*
-
-# ダミー画像やデフォルト画像を置く app/public/profile_images は管理対象にする
 !/storage/app/public/profile_images/
-
-# 例: 商品画像を置くフォルダも同様に管理したい場合
 !/storage/app/public/product_images/
+!/storage/app/public/.gitkeep
+/storage/framework/*
+/storage/logs/*

@@ -10,11 +10,9 @@
   <div class="order">
     <div class="order-left">
       <div class="order__item">
-        <!-- 商品画像 -->
         <div class="order__item-image">
           <img src="{{ asset('storage/' .$item->image_path) }}" alt="{{ $item->name }}" class="item-image">
         </div>
-        <!-- 商品名・価格 -->
         <div class="order__item-title">
           <h1 class="item-name">{{ $item->name }}</h1>
           <p class="price">
@@ -23,7 +21,6 @@
         </div>
       </div>
     
-      <!-- 支払い方法 -->
       <div class="order__payment">
         <label for="payment_method" class="item-title">支払い方法</label>
         <div class="custom-select" id="paymentSelect">
@@ -46,7 +43,6 @@
         @enderror
       </div>
 
-      <!-- 配送先住所 -->
       <div class="order__address">
         <div class="address-group">
           <label for="address" class="item-title">配送先</label>
@@ -60,26 +56,21 @@
         </div>
       </div>
 
-      <!-- hidden フィールド（必須項目を送信） -->
       <input type="hidden" name="postal_code" value="{{ $address['postal_code'] }}">
       <input type="hidden" name="address" value="{{ $address['address'] }}">
       <input type="hidden" name="building" value="{{ $address['building'] ?? '' }}">
 
-      <!-- エラーメッセージの表示 -->
       @error('address')
         <p class="error">{{ $message }}</p>
       @enderror
     </div>
 
-    <!-- 右：確認エリア -->
     <div class="order-right">
       <div class="order-confirm">
-        <!-- 左上 -->
         <div class="confirm-box">
           <p class="confirm-title">商品代金</p>
         </div>
 
-        <!-- 右上 -->
         <div class="confirm-box">
           <p class="confirm-value">
             <span class="confirm-tax">¥</span>
@@ -87,12 +78,10 @@
           </p>
         </div>
 
-        <!-- 左下 -->
         <div class="confirm-box">
           <p class="confirm-title">支払い方法</p>
         </div>
 
-        <!-- 右下 -->
         <div class="confirm-box">
           <p class="confirm-value" id="selected-method">未選択</p>
         </div>
