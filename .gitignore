@@ -21,3 +21,8 @@ yarn-error.log
 !/src/storage/app/public/.gitkeep
 /src/storage/framework/*
 /src/storage/logs/*
+!/src/storage/framework/.gitkeep
+!/src/storage/framework/cache/.gitkeep
+!/src/storage/framework/session/.gitkeep
+!/src/storage/framework/views/.gitkeep
+!/src/storage/logs/.gitkeep
