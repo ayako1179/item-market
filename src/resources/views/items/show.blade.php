@@ -49,6 +49,8 @@
 
       @if($item->is_sold)
       <button class="purchase-btn" disabled>Sold Out</button>
+      @elseif(Auth::check() && $item->user_id === Auth::id())
+      <button class="purchase-btn disabled" disabled>購入手続きへ</button>
       @else
       <a href="{{ route('orders.purchase', $item->id) }}" class="purchase-btn">購入手続きへ</a>
       @endif

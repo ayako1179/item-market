@@ -18,10 +18,6 @@ class OrderController extends Controller
         $item = Item::findOrFail($item_id);
         $user = Auth::user();
 
-        if ($item->user_id === $user->id) {
-            return redirect()->route('profile.mypage');
-        }
-
         $address = session('purchase_address', [
             'postal_code' => $user->profile->postal_code,
             'address' => $user->profile->address,

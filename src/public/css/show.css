@@ -92,6 +92,14 @@
   margin: 22px 0;
 }
 
+.purchase-btn.disabled {
+  background-color: #5F5F5F;
+  color: #fff;
+  cursor: not-allowed;
+  pointer-events: none;
+  border: none;
+}
+
 .show__description {
   width: 570px;
   margin: 37px 0;
