@@ -61,7 +61,7 @@ DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 
 # Stripe APIキー（Stripe管理画面から取得）
-STRIPE_KEY=pk_test_51SCE2qBUa3WtvACItw3gJRqItsjNuallxPpqQCLwXHpPfGErS2vCPNtOikz5nkNP8WkonHaLqFDQocKCyYwu2EKA00INYsu6ot
+STRIPE_KEY=pk_test_xxxxxxxxxxxxxxxxx
 STRIPE_SECRET=sk_test_xxxxxxxxxxxxxxxxx
 ```
 5. アプリケーションキーの作成
@@ -118,6 +118,23 @@ php artisan storage:link
 
 ---
 
+## Stripe APIキーについて
+Stripeによるクレジットカード決済は、**StripeのテストAPIキー**を使用することで動作確認が可能です。
+
+1. [Stripeダッシュボード](https://dashboard.stripe.com/test/apikeys)にログイン
+2. 「開発者」→「APIキー」→「テストキーを表示」から以下の2つをコピー
+   - 公開可能キー（例：`pk_test_************`）
+   - シークレットキー（例：`sk_test_************`）
+3. `.env` に以下のように設定します：
+```env
+STRIPE_KEY=pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+STRIPE_SECRET=sk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+> Stripeのテストモードを使用しているため、実際の課金は発生しません。
+テストカード番号（例：`4242 4242 4242 4242`）を使用して動作確認できます。
+
+---
+
 ## 認証機能（Laravel Fortify）
 - 新規登録・ログイン・ログアウトを実装。
 - Fortifyは `composer.json` に定義済みのため、手動導入不要。
@@ -127,6 +144,8 @@ php artisan storage:link
 ## テスト環境構築と実行方法
 本アプリでは主要機能を自動検証するためのテスト環境を整備しています。
 `PHPUnit` により Feature / Unit テストを実行可能です。
+
+---
 
 ### テスト用データベース設定
 `.env.testing` を作成し、以下の設定を記述してください。
@@ -143,10 +162,27 @@ DB_PASSWORD=root
 # STRIPE_SECRET=sk_test_************************
 ```
 
+### テスト用データベースの作成
+テスト環境実行前に、MySQLコンテナ内でテスト用DBを作成します。
+```bash
+# MySQLコンテナに接続
+docker-compose exec mysql bash
+
+# MySQLへログイン
+mysql -u root -proot --skip-ssl
+
+# テスト用データベースの作成
+CREATE DATABASE `item_market_test` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+EXIT;
+```
+
 ### テスト実行手順
 ```bash
 # PHPコンテナに入る
 docker-compose exec php bash
+
+# マイグレーションを実行（テスト用DB）
+php artisan migrate --env=testing
 
 # 全テストを実行
 php artisan test

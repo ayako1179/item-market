@@ -37,7 +37,10 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user()->load('profile');
-        $profile = $user->profile ?? new Profile();
+        $profile = $user->profile ?? new Profile([
+            'user_id' => $user->id,
+            'profile_image' => 'images/default_profile.png',
+        ]);
 
         return view('profile.edit', compact('user', 'profile'));
     }

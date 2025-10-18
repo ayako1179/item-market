@@ -12,9 +12,14 @@
     <div class="edit__group profile-image">
       <div class="profile-preview">
         <?php
-        $file = $profile->profile_image ?? 'profile_images/default.png';
+        if (!empty($profile->profile_image) && str_contains($profile->profile_image, 'profile_images/')) {
+        $imagePath = asset('storage/' . $profile->profile_image);
+        } else {
+        $imagePath = asset('images/default_profile.png');
+        }
         ?>
-        <img id="preview" src="<?php echo e(asset('storage/'. $profile->profile_image)); ?>" alt="プロフィール画像">
+
+        <img id="preview" src="<?php echo e($imagePath); ?>" alt="プロフィール画像">
       </div>
       <div class="edit__image-action">
         <input type="file" name="profile_image" id="profile_image" accept=".jpeg,.png" class="edit__input">

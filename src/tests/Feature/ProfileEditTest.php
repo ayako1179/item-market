@@ -20,7 +20,7 @@ class ProfileEditTest extends TestCase
 
         Profile::factory()->create([
             'user_id' => $user->id,
-            'profile_image' => 'test.png',
+            'profile_image' => 'profile_images/test.png',
             'postal_code' => '123-4567',
             'address' => '東京都渋谷区神南1-1-1',
         ]);
@@ -29,7 +29,7 @@ class ProfileEditTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response->assertSee('storage/test.png');
+        $response->assertSee('storage/profile_images/test.png');
         $response->assertSee('テストユーザー');
         $response->assertSee('123-4567');
         $response->assertSee('東京都渋谷区神南1-1-1');
