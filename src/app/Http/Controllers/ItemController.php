@@ -20,7 +20,9 @@ class ItemController extends Controller
             if (!auth()->check()) {
                 $items = collect();
             } else {
-                $query = auth()->user()->likedItems();
+                $query = auth()->user()
+                    ->likedItems()
+                    ->where('items.user_id', '!=', auth()->id());
 
                 if ($keyword) {
                     $query->where('name', 'like', "%{$keyword}%");
@@ -75,6 +77,7 @@ class ItemController extends Controller
         $item = new Item();
         $item->user_id = $user_id;
         $item->name = $request->name;
+        $item->brand_name = $request->brand_name;
         $item->price = $request->price;
         $item->description = $request->description;
         $item->image_path = $imagePath;
