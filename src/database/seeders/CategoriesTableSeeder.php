@@ -16,46 +16,46 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'category' => 'ファッション'
+                'category' => 'ファッション',
             ],
             [
-                'category' => '家電'
+                'category' => '家電',
             ],
             [
-                'category' => 'インテリア'
+                'category' => 'インテリア',
             ],
             [
-                'category' => 'レディース'
+                'category' => 'レディース',
             ],
             [
-                'category' => 'メンズ'
+                'category' => 'メンズ',
             ],
             [
-                'category' => 'コスメ'
+                'category' => 'コスメ',
             ],
             [
-                'category' => '本'
+                'category' => '本',
             ],
             [
-                'category' => 'ゲーム'
+                'category' => 'ゲーム',
             ],
             [
-                'category' => 'スポーツ'
+                'category' => 'スポーツ',
             ],
             [
-                'category' => 'キッチン'
+                'category' => 'キッチン',
             ],
             [
-                'category' => 'ハンドメイド'
+                'category' => 'ハンドメイド',
             ],
             [
-                'category' => 'アクセサリー'
+                'category' => 'アクセサリー',
             ],
             [
-                'category' => 'おもちゃ'
+                'category' => 'おもちゃ',
             ],
             [
-                'category' => 'ベビー・キッズ'
+                'category' => 'ベビー・キッズ',
             ],
         ]);
     }

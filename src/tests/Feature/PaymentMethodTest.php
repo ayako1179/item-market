@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Item;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PaymentMethodTest extends TestCase
 {
@@ -30,7 +30,7 @@ class PaymentMethodTest extends TestCase
 
         $response = $this->actingAs($user)->post("/purchase/{$item->id}", [
             'payment_method' => 'コンビニ払い',
-            'address' => '東京都新宿区テスト町1-1'
+            'address' => '東京都新宿区テスト町1-1',
         ]);
 
         $response->assertStatus(302);

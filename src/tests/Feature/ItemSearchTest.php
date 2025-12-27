@@ -2,16 +2,16 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Models\Item;
 use App\Models\Condition;
+use App\Models\Item;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ItemSearchTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     public function test_商品名で部分一致検索ができる()
     {
         $condition = Condition::factory()->create();

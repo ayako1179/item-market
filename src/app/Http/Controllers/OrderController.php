@@ -8,8 +8,8 @@ use App\Models\Item;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
+use Stripe\Stripe;
 
 class OrderController extends Controller
 {
@@ -133,7 +133,7 @@ class OrderController extends Controller
         $address = Session::get('address', [
             'postal_code' => '',
             'address' => '',
-            'building' => ''
+            'building' => '',
         ]);
 
         return view('orders.address', compact('item', 'address'));
@@ -146,7 +146,7 @@ class OrderController extends Controller
                 'postal_code' => $request->postal_code,
                 'address' => $request->address,
                 'building' => $request->building,
-            ]
+            ],
         ]);
 
         return redirect()->route('orders.purchase', $item_id);

@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Models\Item;
 use App\Models\Condition;
+use App\Models\Item;
 use App\Models\Order;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PurchaseTest extends TestCase
 {
@@ -39,7 +39,7 @@ class PurchaseTest extends TestCase
         ]);
     }
 
-    public function test_購入済み商品は一覧画面で_Sold_と表示される()
+    public function test_購入済み商品は一覧画面で_sold_と表示される()
     {
         $buyer = User::factory()->create();
         $seller = User::factory()->create();

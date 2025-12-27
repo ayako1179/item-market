@@ -2,15 +2,16 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Models\Item;
 use App\Models\Condition;
+use App\Models\Item;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class MyListTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -37,7 +38,7 @@ class MyListTest extends TestCase
      *
      * @return void
      */
-    public function test_購入済み商品は_Sold_と表示される()
+    public function test_購入済み商品は_sold_と表示される()
     {
         $condition = Condition::factory()->create();
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExhibitionRequest;
-use App\Models\Item;
 use App\Models\Category;
 use App\Models\Condition;
+use App\Models\Item;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -17,7 +17,7 @@ class ItemController extends Controller
         $keyword = $request->query('keyword');
 
         if ($tab === 'mylist') {
-            if (!auth()->check()) {
+            if (! auth()->check()) {
                 $items = collect();
             } else {
                 $query = auth()->user()
@@ -53,7 +53,7 @@ class ItemController extends Controller
             'categories',
             'condition',
             'comments.user',
-            'likedBy'
+            'likedBy',
         ])->findOrFail($id);
 
         $hasLiked = $item->likedBy->contains('id', Auth::id());
@@ -74,7 +74,7 @@ class ItemController extends Controller
         $user_id = Auth::id();
         $imagePath = $request->file('image')->store('products', 'public');
 
-        $item = new Item();
+        $item = new Item;
         $item->user_id = $user_id;
         $item->name = $request->name;
         $item->brand_name = $request->brand_name;

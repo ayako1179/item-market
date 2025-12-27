@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProfileRequest;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Profile;
-use App\Models\User;
-use App\Http\Requests\ProfileRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -53,7 +52,7 @@ class ProfileController extends Controller
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('profile_images', 'public');
             $profile->profile_image = $path;
-        } elseif (!$profile->profile_image) {
+        } elseif (! $profile->profile_image) {
             $defaultPath = 'images/default_profile.png';
             $newFileName = uniqid('default_') . '.png';
             Storage::disk('public')->put(
@@ -73,6 +72,6 @@ class ProfileController extends Controller
 
         Auth::setUser($user->load('profile'));
 
-        return redirect()->route('profile.edit');
+        return redirect()->route('profile.mypage');
     }
 }

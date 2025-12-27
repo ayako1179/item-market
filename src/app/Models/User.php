@@ -58,11 +58,21 @@ class User extends Authenticatable
 
     public function comments()
     {
-        return $this->hasMany(comment::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function likedItems()
     {
         return $this->belongsToMany(Item::class, 'likes', 'user_id', 'item_id')->withTimestamps();
+    }
+
+    public function like($itemId)
+    {
+        $this->likedItems()->syncWithoutDetaching([$itemId]);
+    }
+
+    public function unlike($itemId)
+    {
+        $this->likedItems()->detach($itemId);
     }
 }

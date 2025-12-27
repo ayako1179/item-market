@@ -80,7 +80,7 @@
     </div>
 
     <div class="show__comments">
-      <h3 class="comments-title">コメント ({{ $item->comments->count() }})</h3>
+      <h2 class="comments-title">コメント ({{ $item->comments->count() }})</h2>
 
       <div class="comments-list">
         @foreach($item->comments as $comment)
@@ -98,7 +98,7 @@
     </div>
 
     <div class="show__comment-form">
-      <h2>商品へのコメント</h2>
+      <h3>商品へのコメント</h3>
       <form action="{{ route('items.comment.store', $item->id) }}" method="POST">
         @csrf
         <textarea name="comment" class="comment-textarea" id="comment">{{ old('comment') }}</textarea>

@@ -4,7 +4,6 @@ namespace App\Actions\Fortify;
 
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use App\Models\Profile;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 

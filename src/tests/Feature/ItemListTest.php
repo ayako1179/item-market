@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -25,7 +25,7 @@ class ItemListTest extends TestCase
         }
     }
 
-    public function test_購入済み商品は_Sold_と表示される()
+    public function test_購入済み商品は_sold_と表示される()
     {
         $soldItem = Item::factory()->create([
             'is_sold' => true,
