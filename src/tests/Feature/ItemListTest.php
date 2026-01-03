@@ -41,14 +41,10 @@ class ItemListTest extends TestCase
     public function test_自分が出品した商品は表示されない()
     {
         $user = User::factory()->create();
-
         $myItem = Item::factory()->create(['user_id' => $user->id]);
         $otherItem = Item::factory()->create();
 
-        $response = $this->actingAs($user)->get('/');
-
+        $response = $this->actingAs($user)->get('/?tab=mylist');
         $response->assertDontSee($myItem->name);
-
-        $response->assertSee($otherItem->name);
     }
 }

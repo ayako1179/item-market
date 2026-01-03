@@ -46,6 +46,7 @@ class UserProfileTest extends TestCase
         Order::factory()->create([
             'user_id' => $user->id,
             'item_id' => $boughtItem->id,
+            'status' => 'in_progress',
             'payment_method' => 'コンビニ払い',
             'postal_code' => '111-1111',
             'address' => '東京都新宿区テスト町1-1',

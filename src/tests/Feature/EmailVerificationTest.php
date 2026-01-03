@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\URL;
 use App\Models\User;
 
 class EmailVerificationTest extends TestCase
@@ -64,7 +65,7 @@ class EmailVerificationTest extends TestCase
 
     $response = $this->actingAs($user)->get($verificationUrl);
 
-    $response->assertRedirect('/mypage/profile');
+    $response->assertRedirect('/?verified=1');
 
     $this->assertNotNull($user->fresh()->email_verified_at);
   }

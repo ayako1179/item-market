@@ -21,6 +21,7 @@ class OrderFactory extends Factory
         return [
             'user_id' => User::factory(),
             'item_id' => Item::factory(),
+            'status' => 'in_progress',
             'payment_method' => 'コンビニ払い',
             'postal_code' => '123-4567',
             'address' => '東京都新宿区西新宿1-1-1',
