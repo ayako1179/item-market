@@ -23,6 +23,16 @@
       <a href="{{ route('profile.mypage', ['page' => 'buy']) }}" class="mypage__tab {{ $page === 'buy' ? 'active' : '' }}">
         購入した商品
       </a>
+
+      <a href="{{ route('profile.mypage', ['page' => 'trading']) }}" class="mypage__tab {{ $page === 'trading' ? 'active' : '' }}">
+        取引中の商品
+
+        @if ($tradingUnreadTotal > 0)
+          <span class="tab-notification">
+            {{ $tradingUnreadTotal }}
+          </span>
+        @endif
+      </a>
     </div>
   </div>
 
@@ -51,7 +61,7 @@
     <div class="product-card">
       <a href="{{ route('items.show', $order->item->id) }}">
         <div class="product-card__image">
-          <img src="{{ $order->item->image_url }}" alt="{{ $order->item->name }}">
+          <img src="{{ asset('storage/' . $order->item->image_path) }}" alt="{{ $order->item->name }}">
           @if($order->item->is_sold)
           <div class="product-card__sold">
             <span class="sold-text">Sold</span>
@@ -65,6 +75,11 @@
     <p class="product-text">購入商品はありません</p>
     @endforelse
     @endif
+
+    @if ($page === 'trading')
+    @include('profile.partials.trading')
+    @endif
   </div>
+
 </div>
 @endsection

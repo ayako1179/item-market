@@ -5,14 +5,14 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ItemCreateTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     public function test_商品出品画面で入力した情報が正しく保存される()
     {

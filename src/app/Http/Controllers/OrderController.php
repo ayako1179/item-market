@@ -6,6 +6,7 @@ use App\Http\Requests\AddressRequest;
 use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Order;
+use App\Models\Chat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Stripe\Checkout\Session as StripeSession;
@@ -42,13 +43,21 @@ class OrderController extends Controller
         $paymentType = $validated['payment_method'];
 
         if ($paymentType === 'コンビニ払い') {
-            Order::create([
+            $order = Order::create([
                 'user_id' => $user->id,
                 'item_id' => $item_id,
                 'payment_method' => $paymentType,
                 'postal_code' => $address['postal_code'],
                 'address' => $address['address'],
                 'building' => $address['building'],
+                'status' => 'in_progress',
+            ]);
+
+            Chat::create([
+                'order_id' => $order->id,
+                'buyer_id' => $user->id,
+                'seller_id' => $item->user_id,
+                'last_message_at' => now(),
             ]);
 
             $item->is_sold = true;
@@ -99,16 +108,25 @@ class OrderController extends Controller
         $pending = session('pending_order');
 
         if ($pending) {
-            Order::create([
+            $order = Order::create([
                 'user_id' => $pending['user_id'],
                 'item_id' => $pending['item_id'],
                 'payment_method' => $pending['payment_method'],
                 'postal_code' => $pending['postal_code'],
                 'address' => $pending['address'],
                 'building' => $pending['building'],
+                'status' => 'in_progress',
             ]);
 
             $item = Item::findOrFail($pending['item_id']);
+
+            Chat::create([
+                'order_id' => $order->id,
+                'buyer_id' => $pending['user_id'],
+                'seller_id' => $item->user_id,
+                'last_message_at' => now(),
+            ]);
+
             $item->is_sold = true;
             $item->save();
 
@@ -150,5 +168,21 @@ class OrderController extends Controller
         ]);
 
         return redirect()->route('orders.purchase', $item_id);
+    }
+
+    public function complete(Order $order)
+    {
+        $user = Auth::user();
+
+        if ($order->user_id !== $user->id) {
+            abort(403);
+        }
+
+        $order->update([
+            'status' => 'completed',
+        ]);
+
+        return redirect()
+            ->route('profile.mypage', ['page' => 'buy']);
     }
 }

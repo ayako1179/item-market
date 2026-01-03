@@ -53,9 +53,7 @@
     </header>
 
     <div class="content">
-
       <?php echo $__env->yieldContent('content'); ?>
-
     </div>
   </div>
   <?php echo $__env->yieldContent('scripts'); ?>

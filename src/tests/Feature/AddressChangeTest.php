@@ -5,12 +5,12 @@ namespace Tests\Feature;
 use App\Models\Item;
 use App\Models\Profile;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class AddressChangeTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     public function test_送付先住所変更画面で登録した住所が商品購入画面に反映される()
     {

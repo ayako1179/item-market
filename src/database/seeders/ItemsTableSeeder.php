@@ -28,7 +28,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'user_id' => '2',
+                'user_id' => '1',
                 'name' => 'HDD',
                 'brand_name' => '西芝',
                 'price' => '5000',
@@ -39,7 +39,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'user_id' => '3',
+                'user_id' => '1',
                 'name' => '玉ねぎ3束',
                 'brand_name' => 'なし',
                 'price' => '300',
@@ -61,7 +61,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'user_id' => '2',
+                'user_id' => '1',
                 'name' => 'ノートPC',
                 'brand_name' => null,
                 'price' => '45000',
@@ -83,7 +83,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'user_id' => '4',
+                'user_id' => '2',
                 'name' => 'ショルダーバッグ',
                 'brand_name' => null,
                 'price' => '3500',
@@ -94,7 +94,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'user_id' => '3',
+                'user_id' => '2',
                 'name' => 'タンブラー',
                 'brand_name' => 'なし',
                 'price' => '500',
@@ -105,7 +105,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'user_id' => '3',
+                'user_id' => '2',
                 'name' => 'コーヒーミル',
                 'brand_name' => 'Starbacks',
                 'price' => '4000',
@@ -116,7 +116,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'user_id' => '4',
+                'user_id' => '2',
                 'name' => 'メイクセット',
                 'brand_name' => null,
                 'price' => '2500',

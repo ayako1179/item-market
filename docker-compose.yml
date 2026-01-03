@@ -13,8 +13,11 @@ services:
 
   php:
     build: ./docker/php
+    user: "33:33"
     volumes:
       - ./src:/var/www/
+      - storage-data:/var/www/storage
+      - cache-data:/var/www/bootstrap/cache
 
   mysql:
     image: mysql:8.0.26
@@ -40,3 +43,14 @@ services:
       - mysql
     ports:
       - 8080:80
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  db-data:
+  storage-data:
+  cache-data:

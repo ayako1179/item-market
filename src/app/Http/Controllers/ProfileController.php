@@ -8,7 +8,6 @@ use App\Models\Order;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -17,20 +16,61 @@ class ProfileController extends Controller
         $user = Auth::user()->load('profile');
         $page = $request->query('page', 'sell');
 
+        $tradingOrders = Order::where('status', 'in_progress')
+            ->where(function ($query) use ($user) {
+                $query
+                    ->where('user_id', $user->id)
+                    ->orWhereHas('item', function ($query) use ($user) {
+                        $query->where('user_id', $user->id);
+                    });
+            })
+            ->with(['chat.messages.reads'])
+            ->get();
+
+        $tradingUnreadTotal = 0;
+
+        foreach ($tradingOrders as $order) {
+            if ($order->chat) {
+                $order->chat->unread_count =
+                    $order->chat->unreadMessagesCountFor($user);
+
+                $tradingUnreadTotal += $order->chat->unread_count;
+            }
+        }
+
+        // 出品した商品
         if ($page === 'sell') {
             $products = Item::where('user_id', $user->id)
                 ->orderByDesc('created_at')
                 ->get();
-        } else {
-            $products = Order::where('user_id', $user->id)
-                ->with(['item' => function ($query) {
-                    $query->orderByDesc('created_at');
-                }])
-                ->whereHas('item')
-                ->get();
+
+            return view('profile.mypage', compact('user', 'products', 'page', 'tradingUnreadTotal'));
         }
 
-        return view('profile.mypage', compact('user', 'products', 'page'));
+        // 購入した商品
+        if ($page === 'buy') {
+            $products = Order::where('user_id', $user->id)
+                ->with('item')
+                ->orderByDesc('created_at')
+                ->get();
+
+            return view('profile.mypage', compact('user', 'products', 'page', 'tradingUnreadTotal'));
+        }
+
+        // 取引中の商品
+        if ($page === 'trading') {
+            $orders = $tradingOrders->sortByDesc(function ($order) {
+                return $order->chat->last_message_at ?? $order->updated_at;
+            });
+
+            return view(
+                'profile.mypage',
+                compact('user', 'orders', 'page', 'tradingUnreadTotal')
+            );
+        }
+
+        // 想定外のpageが来た場合の保険
+        return view('profile.mypage', compact('user', 'page', 'tradingUnreadTotal'));
     }
 
     public function edit()
@@ -50,16 +90,10 @@ class ProfileController extends Controller
         $profile = $user->profile ?? new Profile(['user_id' => $user->id]);
 
         if ($request->hasFile('profile_image')) {
-            $path = $request->file('profile_image')->store('profile_images', 'public');
-            $profile->profile_image = $path;
-        } elseif (! $profile->profile_image) {
-            $defaultPath = 'images/default_profile.png';
-            $newFileName = uniqid('default_') . '.png';
-            Storage::disk('public')->put(
-                "profile_images/{$newFileName}",
-                file_get_contents(public_path($defaultPath))
-            );
-            $profile->profile_image = $newFileName;
+            $profile->profile_image = $request->file('profile_image')
+                ->store('profile_images', 'public');
+        } else {
+            $profile->profile_image = 'profile_images/default.png';
         }
 
         $profile->postal_code = $request->postal_code;

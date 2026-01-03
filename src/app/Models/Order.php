@@ -27,4 +27,16 @@ class Order extends Model
     {
         return $this->belongsTo(Item::class);
     }
+
+    // この取引に紐づくチャット
+    public function chat()
+    {
+        return $this->hasOne(Chat::class);
+    }
+
+    // この取引に対する評価
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

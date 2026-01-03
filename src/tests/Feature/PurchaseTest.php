@@ -7,12 +7,12 @@ use App\Models\Item;
 use App\Models\Order;
 use App\Models\Profile;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class PurchaseTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     public function test_購入ボタンを押下すると購入が完了する()
     {
